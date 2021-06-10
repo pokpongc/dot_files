@@ -42,19 +42,28 @@ endfunction
 set number relativenumber
 set encoding=utf-8
 set fileencoding=utf-8
+set showtabline=2
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
-Plug 'junegunn/goyo.vim'
+" Programing Language/File Format
+Plug 'chrisbra/csv.vim'
 Plug 'daeyun/vim-matlab'
-Plug 'itchyny/lightline.vim'
+Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
+Plug 'tpope/vim-markdown'
+Plug 'vim-syntastic/syntastic'
+Plug 'preservim/tagbar'
+
+Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-markdown'
+
+"Theme and Color
+Plug 'itchyny/lightline.vim'
+Plug 'mkalinski/vim-lightline_tagbar'
 
 call plug#end()
 
@@ -64,14 +73,21 @@ call plug#end()
 set laststatus=2
 set noshowmode
 set shortmess=F
+let g:lightline_tagbar#format = '%s'
+let g:lightline_tagbar#flags = ''
 let g:lightline = {
 	\ 'colorscheme': 'one',
        	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-       	\             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+       	\             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ],
+	\   'right': [ ['lineinfo'],
+	\		['percent'],
+	\		['tagbar', 'fileencoding', 'filetype'] ],
 	\ },
-	\ 'component_fuction': {'gitbranch': 'FugitiveHead'},
+	\ 'component_function': {'gitbranch': 'FugitiveHead', 'tagbar': 'lightline_tagbar#component'},
 	\}
+nmap tb :TagbarToggle<CR>
+let g:tagbar_ctags_bin = 'E:\Program Files\ctags58\ctags.exe'
 
 """"""""""""""
 " fzf config "
@@ -80,3 +96,14 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-f> :BLines<Cr>
 nmap // :BLines!<Cr>
 
+"""""""""""""
+" Syntastic "
+"""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
