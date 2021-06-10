@@ -73,6 +73,10 @@ let g:lightline = {
 	\ 'component_fuction': {'gitbranch': 'FugitiveHead'},
 	\}
 
-
-
+""""""""""""""
+" fzf config "
+""""""""""""""
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-f> :BLines<Cr>
+nmap // :BLines!<Cr>
 
