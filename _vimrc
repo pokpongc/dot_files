@@ -48,6 +48,31 @@ call plug#begin('~/.vim/plugged')
 Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
 Plug 'junegunn/goyo.vim'
 Plug 'daeyun/vim-matlab'
-
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'machakann/vim-highlightedyank'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-markdown'
 
 call plug#end()
+
+""""""""""""""""""""
+" lightline config "
+""""""""""""""""""""
+set laststatus=2
+set noshowmode
+set shortmess=F
+let g:lightline = {
+	\ 'colorscheme': 'one',
+       	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+       	\             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+	\ },
+	\ 'component_fuction': {'gitbranch': 'FugitiveHead'},
+	\}
+
+
+
+
