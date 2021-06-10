@@ -44,6 +44,19 @@ set encoding=utf-8
 set fileencoding=utf-8
 set showtabline=2
 
+"""""""""""
+" Key map "
+"""""""""""
+nnoremap n3 :NERDTree<Cr>
+nnoremap <C-s>c :SyntasticCheck<Cr>
+nnoremap <C-s>e :SyntasticReset<Cr>
+nnoremap // :BLines!<Cr>
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-f> :BLines<Cr>
+
+""""""""""""""""""""
+" Vim-plug Plugins "
+""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
 " Programing Language/File Format
@@ -92,9 +105,6 @@ let g:tagbar_ctags_bin = 'E:\Program Files\ctags58\ctags.exe'
 """"""""""""""
 " fzf config "
 """"""""""""""
-nnoremap <C-p> :Files<Cr>
-nnoremap <C-f> :BLines<Cr>
-nmap // :BLines!<Cr>
 
 """""""""""""
 " Syntastic "
@@ -105,5 +115,5 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
