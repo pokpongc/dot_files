@@ -77,6 +77,7 @@ Plug 'junegunn/fzf.vim'
 "Theme and Color
 Plug 'itchyny/lightline.vim'
 Plug 'mkalinski/vim-lightline_tagbar'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
