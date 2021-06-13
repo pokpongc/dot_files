@@ -53,6 +53,7 @@ nnoremap <C-s>e :SyntasticReset<Cr>
 nnoremap // :BLines!<Cr>
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-f> :BLines<Cr>
+nmap tb :TagbarToggle<CR>
 
 """"""""""""""""""""
 " Vim-plug Plugins "
@@ -66,6 +67,7 @@ Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
 Plug 'tpope/vim-markdown'
 Plug 'vim-syntastic/syntastic'
 Plug 'preservim/tagbar'
+Plug 'lervag/vimtex'
 
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
@@ -100,8 +102,6 @@ let g:lightline = {
 	\ },
 	\ 'component_function': {'gitbranch': 'FugitiveHead', 'tagbar': 'lightline_tagbar#component'},
 	\}
-nmap tb :TagbarToggle<CR>
-let g:tagbar_ctags_bin = 'E:\Program Files\ctags58\ctags.exe'
 
 """"""""""""""
 " fzf config "
@@ -118,3 +118,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_cpp_checkers = ['gcc']
+let g:syntastic_matlab_checkers = ['mlint']
