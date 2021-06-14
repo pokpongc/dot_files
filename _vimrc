@@ -40,20 +40,25 @@ function MyDiff()
 endfunction
 
 set number relativenumber
-set encoding=utf-8
-set fileencoding=utf-8
+set encoding=UTF-8
+set fileencoding=UTF-8
 set showtabline=2
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 """""""""""
 " Key map "
 """""""""""
-nnoremap n3 :NERDTree<Cr>
+nnoremap n3 :NERDTreeToggle<Cr>
 nnoremap <C-s>c :SyntasticCheck<Cr>
 nnoremap <C-s>e :SyntasticReset<Cr>
 nnoremap // :BLines!<Cr>
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-f> :BLines<Cr>
-nmap tb :TagbarToggle<CR>
+nmap tb :TagbarToggle<Cr>
+nnoremap <S-T> :tabe<Cr>
+nnoremap <S-G> :tabp<Cr>
+nnoremap <S-H> :tabn<Cr>
 
 """"""""""""""""""""
 " Vim-plug Plugins "
@@ -69,17 +74,21 @@ Plug 'vim-syntastic/syntastic'
 Plug 'preservim/tagbar'
 Plug 'lervag/vimtex'
 
+" Quality of life
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-highlightedyank'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 "Theme and Color
 Plug 'itchyny/lightline.vim'
 Plug 'mkalinski/vim-lightline_tagbar'
 Plug 'mhinz/vim-startify'
+
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -122,3 +131,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_matlab_checkers = ['mlint']
+
+let g:webdevicons_enable_nerdtree = 1
+
