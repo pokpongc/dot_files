@@ -1,3 +1,29 @@
+" Startify Settings
+let g:startify_custom_header = [
+  \ '                                ______      ',
+  \ '            __                /\  ____`\    ',
+  \ '   __   __ /\_\    ___ ___    \ \ \___\ \   ',
+  \ '  /\ \ /\ \\/\ \ /` __` __`\   \ \  ____ \  ',
+  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \   \ \ \___\ \ ',
+  \ '   \ \___/   \ \_\ \_\ \_\ \_\   \ \_______\',
+  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_______/',
+  \ '                                            ',
+  \ ]
+let g:ascii = [
+  \ '                                            '
+  \ ]
+let g:startify_custom_footer = 'map(startify#fortune#boxed() + g:ascii, "\"   \".v:val")'
+let g:startify_session_autoload = 1
+let g:startify_change_to_dir = 1
+let g:ctrlp_reuse_window = 'startify'
+let g:startify_list_order = ['bookmarks', 'files']
+let g:startify_skiplist = [
+  \ 'COMMIT_EDITMSG',
+  \ $VIMRUNTIME .'/doc',
+  \ 'bundle/.*/doc',
+  \ '\.DS_Store'
+  \ ]
+
 " Vim with all enhancements
 source $VIMRUNTIME/vimrc_example.vim
 
@@ -44,7 +70,10 @@ set encoding=UTF-8
 set fileencoding=UTF-8
 set showtabline=2
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+highlight LineNr ctermfg=blue ctermbg=black
+highlight ColorColumn ctermbg=white guibg=white
+set fillchars=vert:\ ,fold:-,diff:-
+highlight VertSplit guibg=black guibg=black ctermbg=blue ctermfg=blue
 
 """""""""""
 " Key map "
@@ -57,8 +86,8 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-f> :BLines<Cr>
 nmap tb :TagbarToggle<Cr>
 nnoremap <S-T> :tabe<Cr>
-nnoremap <S-G> :tabp<Cr>
-nnoremap <S-H> :tabn<Cr>
+nnoremap <S-P> :tabp<Cr>
+nnoremap <S-N> :tabn<Cr>
 
 """"""""""""""""""""
 " Vim-plug Plugins "
@@ -75,6 +104,7 @@ Plug 'preservim/tagbar'
 Plug 'lervag/vimtex'
 
 " Quality of life
+Plug 'vim-scripts/AutoComplPop'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
@@ -83,6 +113,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-highlightedyank'
 
 "Theme and Color
+Plug 'etdev/vim-hexcolor'
 Plug 'itchyny/lightline.vim'
 Plug 'mkalinski/vim-lightline_tagbar'
 Plug 'mhinz/vim-startify'
@@ -101,7 +132,7 @@ set shortmess=F
 let g:lightline_tagbar#format = '%s'
 let g:lightline_tagbar#flags = ''
 let g:lightline = {
-	\ 'colorscheme': 'one',
+	\ 'colorscheme': 'nord',
        	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
        	\             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ],
@@ -133,4 +164,10 @@ let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_matlab_checkers = ['mlint']
 
 let g:webdevicons_enable_nerdtree = 1
+set complete+=kspell
+set completeopt=menuone,longest
 
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
