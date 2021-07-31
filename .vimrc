@@ -70,7 +70,7 @@ set encoding=UTF-8
 set fileencoding=UTF-8
 set showtabline=2
 set noerrorbells visualbell t_vb=
-highlight LineNr ctermfg=blue 
+highlight LineNr ctermfg=blue
 " ctermbg=black
 highlight ColorColumn ctermbg=white guibg=white
 set fillchars=vert:\ ,fold:-,diff:-
@@ -101,6 +101,7 @@ Plug 'tpope/vim-markdown'
 Plug 'preservim/tagbar'
 Plug 'lervag/vimtex'
 Plug 'dense-analysis/ale'
+Plug 'elzr/vim-json'
 
 " Quality of life
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -135,10 +136,10 @@ call plug#end()
 let g:airline_symbols = {}
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline_left_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline_left_sep = ''
 let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 let g:airline_skip_empty_sections = 1
 let g:airline_right_alt_sep = '|'
 let g:airline_symbols.branch = ''
@@ -178,7 +179,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
