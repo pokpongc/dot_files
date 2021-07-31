@@ -16,7 +16,16 @@ let g:startify_custom_footer = 'map(startify#fortune#boxed() + g:ascii, "\"   \"
 let g:startify_session_autoload = 1
 let g:startify_change_to_dir = 1
 let g:ctrlp_reuse_window = 'startify'
-let g:startify_list_order = ['bookmarks', 'files']
+let g:startify_bookmarks = [
+            \ { 'v': '~/.vimrc' },
+            \ { 'z': '~/.zshrc' },
+            \ ]
+let g:startify_list_order = ['files','dir','bookmarks']
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   Files']            },
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
 let g:startify_skiplist = [
   \ 'COMMIT_EDITMSG',
   \ $VIMRUNTIME .'/doc',
@@ -113,6 +122,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-highlightedyank'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tpope/vim-surround'
+Plug 'kshenoy/vim-signature'
 
 "Theme and Color
 Plug 'arcticicestudio/nord-vim'
@@ -130,18 +141,19 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
+
 """"""""""""""""""
 " airline config "
 """"""""""""""""""
 let g:airline_symbols = {}
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
 let g:airline_skip_empty_sections = 1
-let g:airline_right_alt_sep = '|'
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -200,6 +212,7 @@ set cpoptions-=n
 
 set list
 
+set mouse=a 
 set splitbelow
 set termwinsize=10x0
 colorscheme nord

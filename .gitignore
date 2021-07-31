@@ -1,2 +1,6 @@
 # for Windows system
 vim82
+
+*~
+*.swp
+/lib
