@@ -33,6 +33,50 @@ let g:startify_skiplist = [
   \ '\.DS_Store'
   \ ]
 
+""""""""""""""""""""
+" Vim-plug Plugins "
+""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+" Programing Language/File Format
+Plug 'chrisbra/csv.vim'
+Plug 'daeyun/vim-matlab'
+Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
+Plug 'tpope/vim-markdown'
+Plug 'lervag/vimtex'
+" Plug 'vim-syntastic/syntastic'
+Plug 'elzr/vim-json'
+
+" Quality of life
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'machakann/vim-highlightedyank'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'kshenoy/vim-signature'
+Plug 'junegunn/goyo.vim'
+
+" Theme and Color
+Plug 'arcticicestudio/nord-vim'
+Plug 'etdev/vim-hexcolor'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+
+" File explorer
+Plug 'scrooloose/nerdtree'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'preservim/tagbar'
+
+call plug#end()
+
 " Vim with all enhancements
 source $VIMRUNTIME/vimrc_example.vim
 
@@ -74,73 +118,44 @@ function MyDiff()
   endif
 endfunction
 
+" Enable auto complete
+" set wildmode=longest,list,full
+set splitbelow splitright
 set number
+set list
+set mouse=a
+set termwinsize=10x0
 set encoding=UTF-8
 set fileencoding=UTF-8
 set showtabline=2
 set noerrorbells visualbell t_vb=
 highlight LineNr ctermfg=blue
-" ctermbg=black
 highlight ColorColumn ctermbg=white guibg=white
 set fillchars=vert:\ ,fold:-,diff:-
 highlight VertSplit guibg=black guibg=black ctermbg=blue ctermfg=blue
+set cursorline
+set cursorlineopt=number
+autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 
 """""""""""
 " Key map "
 """""""""""
-nnoremap n3 :NERDTreeToggle<Cr>
+nnoremap <leader>g :Goyo<Cr>
 nnoremap // :BLines!<Cr>
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-f> :BLines<Cr>
+" acronym
+nnoremap n3 :NERDTreeToggle<Cr>
 nmap tb :TagbarToggle<Cr>
+" remap tab nabigation
 nnoremap <S-T> :tabe<Cr>
 nnoremap <S-P> :tabp<Cr>
 nnoremap <S-N> :tabn<Cr>
-
-""""""""""""""""""""
-" Vim-plug Plugins "
-""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
-
-" Programing Language/File Format
-Plug 'chrisbra/csv.vim'
-Plug 'daeyun/vim-matlab'
-Plug 'JuliaEditorSupport/julia-vim', { 'branch': 'master' }
-Plug 'tpope/vim-markdown'
-Plug 'preservim/tagbar'
-Plug 'lervag/vimtex'
-Plug 'dense-analysis/ale'
-Plug 'elzr/vim-json'
-
-" Quality of life
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-scripts/AutoComplPop'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/goyo.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'machakann/vim-highlightedyank'
-Plug 'scrooloose/nerdcommenter'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'tpope/vim-surround'
-Plug 'kshenoy/vim-signature'
-
-"Theme and Color
-Plug 'arcticicestudio/nord-vim'
-Plug 'etdev/vim-hexcolor'
-" Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mkalinski/vim-lightline_tagbar'
-Plug 'mhinz/vim-startify'
-
-Plug 'scrooloose/nerdtree'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-call plug#end()
+" remap split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 """"""""""""""""""
 " airline config "
@@ -157,7 +172,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
 
 """"""""""""""""""""""""""""""""""
 " cpp-enbhanced-highlight config "
@@ -167,21 +182,31 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_no_function_highlight = 1
 
-"""""""""""""
-" fzf config "
-""""""""""""""
+"""""""""""""""""""""""""""""
+" latex-live-preview config "
+"""""""""""""""""""""""""""""
+let g:tex_flavor = "latex"
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = 'zathura'
 
 """"""""""""""
 " ALE config "
 """"""""""""""
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
-let g:ale_c_gcc_autoinclude_source_dir = 1
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
-let g:ale_fix_on_save = 1
-
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_cpp_checkers = ['clang_check', 'gcc']
+" let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" let g:syntastic_cpp_check_header = 1
+" let g:syntastic_debug=1
 " Nerd tree extra config
 let g:webdevicons_enable_nerdtree = 1
 set complete+=kspell
@@ -210,9 +235,4 @@ let &showbreak='↳ '
 
 set cpoptions-=n
 
-set list
-
-set mouse=a 
-set splitbelow
-set termwinsize=10x0
 colorscheme nord
