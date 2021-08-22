@@ -1,8 +1,7 @@
-set laststatus=2
 set showtabline=2
 let g:lightline_gitdiff#indicator_added = ''
 let g:lightline_gitdiff#indicator_deleted = ''
-let g:lightline_gitdiff#indicator_modified = ''
+let g:lightline_gitdiff#indicator_modified = ''
 let g:lightline_gitdiff#min_winwidth = '70'
 
 let g:lightline#bufferline#show_number = 2

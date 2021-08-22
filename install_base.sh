@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/sh
 cd ~
 sudo apt update -y
 # install glxgears for wslg checking

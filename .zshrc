@@ -8,6 +8,9 @@ fi
 # Created by newuser for 5.8
 
 alias ls='ls --color=auto'
+alias la='ls --color=auto -a'
+alias ll='ls --color=auto -l'
+alias v='nvim'
 
 # Auto Complete
 autoload -Uz compinit
@@ -46,7 +49,6 @@ fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 cd ~
-clear
 pfetch
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme

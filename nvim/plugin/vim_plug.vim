@@ -11,6 +11,7 @@ Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Quality of life
+Plug 'airblade/vim-gitgutter'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'vim-scripts/AutoComplPop'
 Plug 'junegunn/fzf.vim'
@@ -40,10 +41,11 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'dracula/vim'
 
 " File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'weirongxu/coc-explorer'
+" Plug 'scrooloose/nerdtree'
+" Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/tagbar'
 
 call plug#end()

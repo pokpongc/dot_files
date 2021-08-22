@@ -33,6 +33,13 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_removed_above_and_below = ''
+let g:gitgutter_sign_modified_removed = ''
+
 " Last
 set listchars=nbsp:␣,eol:↲,tab:\┊\ ,extends:›,precedes:‹,trail:•
 
