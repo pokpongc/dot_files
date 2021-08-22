@@ -49,3 +49,4 @@ cd ~
 clear
 pfetch
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
