@@ -1,4 +1,5 @@
 set showtabline=2
+
 let g:lightline_gitdiff#indicator_added = ''
 let g:lightline_gitdiff#indicator_deleted = ''
 let g:lightline_gitdiff#indicator_modified = ''
@@ -20,25 +21,25 @@ let g:lightline = {
   \ 'colorscheme': 'nightfox',
   \   'active': {
   \     'left': [['mode', 'paste', ],
-  \              ['gitbranch', 'gitstatus', 'filename']],
-  \     'right': [[ 'lineinfo' ],
-  \               [ 'percent' ],
-  \               [ 'fileformat', 'fileencoding' ],
-  \               [ 'tagbar'],],
+  \              ['gitbranch', 'filename', 'tagbar']],
+  \     'right': [['percent', 'lineinfo' ],
+  \               ['fileformat', 'fileencoding', 'filetype'],
+  \               ],
   \   },
   \ 'tabline': {
   \   'left': [ ['buffers'] ],
-  \   'right': [ ['close'] ]
+  \   'right': [ ['gitstatus'] ]
   \ },
   \ 'component_expand': {
   \   'buffers': 'lightline#bufferline#buffers'
   \ },
   \ 'component_type': {
-  \   'buffers': 'tabsel'
+  \   'buffers': 'tabsel',
+\     'trailing': 'warning'
   \ },
   \   'component': {
   \     'gitstatus': '%<%{lightline_gitdiff#get_status()}',
-  \     'tagbar': '%{tagbar#currenttag(" %s", "")}',
+  \     'tagbar': '%{tagbar#currenttag(" %s", " No Tag")}',
   \   },
   \   'component_visible_condition': {
   \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""',
@@ -47,8 +48,14 @@ let g:lightline = {
   \                           'lineinfo': 'LightlineLineinfo',
   \                           'filename': 'LightlineFilename',
   \                           'gitbranch': 'LightlineGitbranch',
-  \ }
+  \                           'filetype': 'LightlineFiletype',
+  \ },
+  \   'subseparator': { 'left': '', 'right': ' '},
+  "\   'subseparator': { 'left': '', 'right': '⏽'},
  \ }
+
+
+let g:lightline#trailing_whitespace#indicator = '•'
 
 function! s:trim(maxlen, str) abort
     let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
@@ -57,13 +64,28 @@ endfunction
 
 function! LightlineReadonly() abort
     let ftmap = {
-                \ 'coc-explorer': '',
+                \ 'nerdtree': '',
                 \ 'fugitive': '',
                 \ 'vista': ''
                 \ }
     let l:char = get(ftmap, &filetype, '')
     return &readonly ? l:char : ''
 endfunction
+
+function! LightlinePercent() abort
+    if winwidth(0) < 60
+        return ''
+    endif
+
+    let l:percent = line('.') * 100 / line('$') . '%'
+    return printf('%s', l:percent)
+endfunction
+
+function! LightlineFiletype() abort
+    let l:icon = WebDevIconsGetFileTypeSymbol()
+    return winwidth(0) > 86 ? (strlen(&filetype) ? &filetype . ' ' . l:icon . ' ' : l:icon) : ''
+endfunction
+
 
 function! LightlineLineinfo() abort
     if winwidth(0) < 86
@@ -78,36 +100,37 @@ endfunction
 
 function! LightlineFilename() abort
     let ftmap = {
-                \ 'coc-explorer': '',
+                \ 'nerdtree': '',
                 \ 'fugitive': '',
-                \ 'vista': ''
+                \ 'tagbar': ''
                 \ }
     if &readonly
-        let l:char = get(ftmap, &filetype, ' ')
+        let l:char = get(ftmap, &filetype, ' ')
     else
-        let l:char = get(ftmap, &filetype, '')
+        let l:char = get(ftmap, &filetype, ' ')
     endif
     let l:maxlen = winwidth(0) - winwidth(0) / 2
     let l:relative = expand('%:.')
     let l:tail = expand('%:t')
-    let l:noname = 'No Name'
+    let l:noname = 'Empty Buffer'
 
     if winwidth(0) < 50
         return ''
     endif
 
-    if winwidth(0) < 86
+    if winwidth(0) < 220
         return l:tail ==# '' ? l:noname : l:char . s:trim(l:maxlen, l:tail)
     endif
 
-    return l:relative ==# '' ? l:noname : l:char . s:trim(l:maxlen, l:relative)
+    return l:tail ==# '' ? l:noname : l:char . s:trim(l:maxlen, l:tail)
+    "return l:relative ==# '' ? l:noname : l:char . s:trim(l:maxlen, l:relative)
 endfunction
 
 function! LightlineGitbranch() abort
     if exists('*fugitive#head')
-        let maxlen = 20
+        let maxlen = 15
         let branch = fugitive#head()
-        return branch !=# '' ? ' '. s:trim(maxlen, branch) : ''
+        return branch !=# '' ? ' '. s:trim(maxlen, branch) : ''
     endif
     return fugitive#head()
 endfunction

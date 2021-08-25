@@ -50,5 +50,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 cd ~
 pfetch
+export LOGGER_ENABLE_LOGGING
+export LOGGER_PRINT_STDOUT
+export LOGGER_ENABLE_DEBUG
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
