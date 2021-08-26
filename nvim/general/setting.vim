@@ -35,7 +35,7 @@ set noerrorbells visualbell t_vb=
 set cursorline
 autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 let loaded_netrwPlugin = 1
-" set autochdir                           " Your working directory will always be the same as your working directory
+ set autochdir                           " Your working directory will always be the same as your working directory
 "
 set listchars=nbsp:␣,eol:↲,tab:\\ ,extends:›,precedes:‹,trail:•
 
