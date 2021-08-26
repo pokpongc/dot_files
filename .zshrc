@@ -30,6 +30,9 @@ _comp_options+=(globdots)
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zhistory
+export LOGGER_ENABLE_LOGGING
+export LOGGER_PRINT_STDOUT
+export LOGGER_ENABLE_DEBUG
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt EXTENDED_HISTORY
@@ -50,7 +53,4 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 cd ~
 pfetch
-export LOGGER_ENABLE_LOGGING
-export LOGGER_PRINT_STDOUT
-export LOGGER_ENABLE_DEBUG
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
-sudo apt-get -y install neovim
+sudo apt-get -y install neovim ctags
 
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 cat /etc/apt/sources.list.d/nodesource.list
@@ -10,6 +10,11 @@ deb-src https://deb.nodesource.com/node_14.x focal main
 sudo apt -y install nodejs
 
 sudo npm install -g neovim
+sudo npm i -g vscode-json-languageserver
+sudo npm i -g tree-sitter
+sudo npm i -g clangd
+sudo npm i -g pyright
+sudo npm i -g bash-language-server
 
 sudo apt install -y pyhton3 python3-pip ctags clangd
 pip install pylint

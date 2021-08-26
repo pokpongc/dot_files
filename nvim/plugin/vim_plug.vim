@@ -2,10 +2,11 @@ call plug#begin('~/.vim/plugged')
 
 " Native LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
+Plug 'kabouzeid/nvim-lspinstall'
 
 " Programing Language/File Format
 Plug 'chrisbra/csv.vim'

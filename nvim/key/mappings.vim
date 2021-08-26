@@ -15,6 +15,7 @@ nnoremap <S-TAB> :bprevious<CR>
 
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Better tabbing
 nnoremap <S-T> :tabe<Cr>
@@ -26,3 +27,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
+" Terminal
+nnoremap <silent> <A-v> :VTerm<CR>
+nnoremap <silent> <A-t> :Term<CR>

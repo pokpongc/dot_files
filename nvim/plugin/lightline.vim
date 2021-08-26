@@ -23,7 +23,7 @@ let g:lightline = {
   \     'left': [['mode', 'paste', ],
   \              ['gitbranch', 'filename', 'tagbar']],
   \     'right': [['percent', 'lineinfo' ],
-  \               ['fileformat', 'fileencoding', 'filetype'],
+  \               ['fileformat', 'fileencoding'],
   \               ],
   \   },
   \ 'tabline': {
@@ -51,7 +51,7 @@ let g:lightline = {
   \                           'filetype': 'LightlineFiletype',
   \ },
   \   'subseparator': { 'left': '', 'right': ' '},
-  "\   'subseparator': { 'left': '', 'right': '⏽'},
+  \   'tabline_subseparator': {'left': '|', 'right': '|'},
  \ }
 
 
@@ -66,7 +66,7 @@ function! LightlineReadonly() abort
     let ftmap = {
                 \ 'nerdtree': '',
                 \ 'fugitive': '',
-                \ 'vista': ''
+                \ 'tagbar': ''
                 \ }
     let l:char = get(ftmap, &filetype, '')
     return &readonly ? l:char : ''
@@ -94,7 +94,7 @@ function! LightlineLineinfo() abort
 
     let l:current_line = printf('%s', line('.'))
     let l:current_column = printf('%s', col('.'))
-    let l:lineinfo = ' ' . l:current_line . ':' . l:current_column
+    let l:lineinfo = ' ' . l:current_line . ':' . l:current_column
     return l:lineinfo
 endfunction
 
@@ -104,15 +104,16 @@ function! LightlineFilename() abort
                 \ 'fugitive': '',
                 \ 'tagbar': ''
                 \ }
+    let l:icon = WebDevIconsGetFileTypeSymbol()
     if &readonly
-        let l:char = get(ftmap, &filetype, ' ')
+        let l:char = get(ftmap, &filetype, l:icon . ' ' . ' ')
     else
-        let l:char = get(ftmap, &filetype, ' ')
+        let l:char = get(ftmap, &filetype, l:icon . ' ')
     endif
     let l:maxlen = winwidth(0) - winwidth(0) / 2
     let l:relative = expand('%:.')
     let l:tail = expand('%:t')
-    let l:noname = 'Empty Buffer'
+    let l:noname = ' Empty Buffer'
 
     if winwidth(0) < 50
         return ''
@@ -128,7 +129,7 @@ endfunction
 
 function! LightlineGitbranch() abort
     if exists('*fugitive#head')
-        let maxlen = 15
+        let maxlen = 20
         let branch = fugitive#head()
         return branch !=# '' ? ' '. s:trim(maxlen, branch) : ''
     endif
