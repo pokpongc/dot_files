@@ -16,7 +16,7 @@ sudo npm i -g clangd
 sudo npm i -g pyright
 sudo npm i -g bash-language-server
 
-sudo apt install -y pyhton3 python3-pip ctags clangd
+sudo apt install -y python3 python3-pip ctags clangd
 pip install pylint
 python3 -m pip install --user --upgrade pynvim
 
