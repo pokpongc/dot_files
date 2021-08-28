@@ -1,7 +1,7 @@
 " Tex
 let g:tex_flavor = "latex"
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'mupdf'
+let g:vimtex_view_method = 'mupdf'
 
 " devicons
 let g:webdevicons_enable_nerdtree = 1
@@ -14,4 +14,15 @@ let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_removed_above_and_below = ''
 let g:gitgutter_sign_modified_removed = ''
 
+" goyo
+let g:goyo_width = 100
+function! s:goyo_enter()
+    set wrap                              " Display long lines as just one line
+endfunction
 
+function! s:goyo_leave()
+    set nowrap
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()

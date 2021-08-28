@@ -7,6 +7,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'onsails/lspkind-nvim'
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'folke/trouble.nvim'
+Plug 'SmiteshP/nvim-gps'
 
 " Programing Language/File Format
 Plug 'chrisbra/csv.vim'
@@ -17,6 +19,7 @@ Plug 'lervag/vimtex'
 Plug 'elzr/vim-json'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
+Plug 'xuhdev/vim-latex-live-preview'
 
 " Quality of life
 Plug 'airblade/vim-gitgutter'

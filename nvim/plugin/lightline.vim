@@ -39,7 +39,6 @@ let g:lightline = {
   \ },
   \   'component': {
   \     'gitstatus': '%<%{lightline_gitdiff#get_status()}',
-  \     'tagbar': '%{tagbar#currenttag(" %s", " No Tag")}',
   \   },
   \   'component_visible_condition': {
   \     'gitstatus': 'lightline_gitdiff#get_status() !=# ""',
@@ -49,6 +48,7 @@ let g:lightline = {
   \                           'filename': 'LightlineFilename',
   \                           'gitbranch': 'LightlineGitbranch',
   \                           'filetype': 'LightlineFiletype',
+  \                           'tagbar': 'LightlineTagbarPlusGps',
   \ },
   \   'subseparator': { 'left': '', 'right': ' '},
   \   'tabline_subseparator': {'left': '|', 'right': '|'},
@@ -56,6 +56,11 @@ let g:lightline = {
 
 
 let g:lightline#trailing_whitespace#indicator = '•'
+
+function! NvimGps() abort
+	return luaeval("require'nvim-gps'.is_available()") ?
+		\ luaeval("require'nvim-gps'.get_location()") : ''
+endfunction
 
 function! s:trim(maxlen, str) abort
     let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
@@ -71,6 +76,28 @@ function! LightlineReadonly() abort
     let l:char = get(ftmap, &filetype, '')
     return &readonly ? l:char : ''
 endfunction
+
+function! LightlineTagbarPlusGps() abort
+    let l:gps = NvimGps()
+    if l:gps == ''
+        let l:ret = tagbar#currenttag(" %s", " No Tag")
+    else
+        let l:ret = l:gps
+    endif
+
+    let l:minwin = 100
+    let l:textshrink = 25
+
+    if winwidth(0) < l:minwin
+        if len(l:ret) < l:textshrink
+            return l:ret
+        else
+            return l:ret[0:l:textshrink] . '...'
+        endif
+    else
+    return l:ret
+endfunction
+
 
 function! LightlinePercent() abort
     if winwidth(0) < 60
